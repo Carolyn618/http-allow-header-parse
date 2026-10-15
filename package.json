@@ -1,6 +1,6 @@
 {
   "name": "http-allow-header-parse",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Extracts valid HTTP methods from an Allow header and returns them as a set.",
   "type": "module",
   "main": "src/index.js",
