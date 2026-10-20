@@ -21,3 +21,10 @@ The trade-off: methods are validated against a fixed set (the nine registered in
 ## Edge you will hit
 
 Methods are matched case-sensitively. RFC 9110 requires method tokens to be uppercase, so `get` is not recognized — only `GET` is. A header that arrives lowercased (some intermediaries mangle case) will yield an empty set. This is intentional; silently uppercasing would hide a spec violation and could cause a caller to believe a non-conformant method is supported when the server will in fact reject it.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
